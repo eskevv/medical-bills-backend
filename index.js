@@ -1,14 +1,15 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // # simple medical bill GET / POST endpoints #
 
-let bills = []; // <-- local data storage no database solution (easier to test)
-// usually i'd go with postgress, mongo, or microsoft sql and include my connection string in a .env file
+let bills = [ // <-- local data storage no database solution (easier to test)
+  { patientName: 'John Doe', patientAddress: '123 Main St', hospitalName: 'General Hospital', dateOfService: '2022-02-15', billAmount: 1000 },
+  { patientName: 'Jane Smith', patientAddress: '456 Elm St', hospitalName: 'St. Mary\'s Hospital', dateOfService: '2022-02-16', billAmount: 2000 }
+]; // usually i'd go with postgress, mongo, or microsoft sql and include my connection string in a .env file
 
-app.use(bodyParser.json()); // parsing method to extract json from requests
+app.use(express.json()); // parsing method to extract json from requests
 
 app.get('/items', (req, res) => {
   // read from where billing data is located and retrieve all documents
@@ -22,6 +23,7 @@ app.post('/items', (req, res) => {
   // this post request will immediately save the bill in ram
   const { patientName, patientAddress, hospitalName, dateOfService, billAmount } = req.body;
   const bill = { patientName, patientAddress, hospitalName, dateOfService, billAmount };
+  console.log(req.body);
   bills.push(bill);
   res.status(201).json(bill); // ok-created status
 });
@@ -36,8 +38,7 @@ app.listen(PORT, () => {
 // all data remains valid in local storage as long as the connection is up (hence the app is running)
 // -------------------------------------------------------------------------------------------------------------------
 // curl http://localhost:3000/items
-// curl -X POST -H 'Content-Type: application/json' -d '{"patientName": "John Smith", "patientAddress": "123 Main St",
-//  "hospitalName": "General Hospital", "dateOfService": "2022-02-15", "billAmount": 1000}' http://localhost:3000/items
+// curl -X POST -H 'Content-Type: application/json' -d '{"patientName": "John Smith", "patientAddress": "123 Main St", "hospitalName": "General Hospital", "dateOfService": "2022-02-15", "billAmount": 1000}' http://localhost:3000/items
 // -------------------------------------------------------------------------------------------------------------------
 
 // ==================================================================================================
