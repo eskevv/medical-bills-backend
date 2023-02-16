@@ -88,7 +88,7 @@ async function solution_two() {
 //    "General Hospital", "dateOfService": "2022-02-15", "billAmount": 1000}' http://localhost:3000/items
 
 // -------------------------------------------------------------------------------------------------------------------
-// ** solution one (bad) ->
+// ** example solution (bad) ->
 // ** A database post request would look something like this in mongo (condensed into one function)
 // ** The client object would have been created but best practice is to keep a connection pool for better performance
 // -------------------------------------------------------------------------------------------------------------------
