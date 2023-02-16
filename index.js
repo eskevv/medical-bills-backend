@@ -81,7 +81,7 @@ async function solution_two() {
 // -------------------------------------------------------------------------------------------------------------------
 // ** Testing Endpoints (without using other gui clients like Postman)
 // ** all data remains valid in local storage as long as the connection is up (app is running)
-// ** another way to validate the data is using the error value from a model schema and logging it to the console
+// ** another way to validate the data is using the error value from a model schema and logging it to the console (already done)
 // -------------------------------------------------------------------------------------------------------------------
 // curl http://localhost:3000/items
 // curl -X POST -H 'Content-Type: application/json' -d '{"patientName": "John Smith", "patientAddress": "123 Main St", "hospitalName":
