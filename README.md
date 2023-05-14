@@ -1,6 +1,3 @@
-# truffle-backend-assessment
-the assessment solution for the backend of a medical bill service
-
 **Structure**
 The index.js file is the entry point and is divided into 4 sections
 1. Setup and imports
